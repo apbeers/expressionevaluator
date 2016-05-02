@@ -15,56 +15,9 @@ Token::Token(const string& s)
 
 void Token::set(const string& s)
 {
-    /*
-    token  = s;
-    priority = -1;
-    
-    if (s == "+" || s == "-")
-    {
-        priority = 6;
-        type = op;
-    }
-    else if (s == "*" || s == "/" || s == "%")
-    {
-        priority = 5;
-        type = op;
-    }
-    else if (s == "=")
-        type = eq;
-    else if (s == "(")
-    {
-        type = openbrace;
-        priority = 1;
-    }
-    else if (s == ")")
-    {
-        type = closebrace;
-        priority = 1;
-    }
-    
-    // error checking from the TAs
-    // Single letters are valid. Multiple letters are not.
-    else if (s.length() == 1 && isalpha(s[0]))
-        type = letter;
-        
-    // We have an invalid token or a number. Figure out which.
-    else
-    {
-        type = integer;
-        for (int i = 0; i < s.length(); ++i)
-        {
-            if (!isdigit(s[i]))
-            {
-                type = invalid;
-                break;
-            }
-        }  
-    }
-     */
     token = s; // these three lines set the default variables
     priority = -1;
     type = invalid;
-    
     
     // this if statement is used to set the priority and type of the token
     if (s.length() == 1 && !isdigit(s.at(0)) && !isalpha(s.at(0)))

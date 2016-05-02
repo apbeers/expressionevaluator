@@ -15,42 +15,45 @@
 
 using namespace std;
 
-int main(int argc, const char * argv[]) {
+int main(int argc, const char * argv[])
+{
     
     string input = "";
     string action = "";
 
     vector<Expression> expressions;
-    
-    
     Expression expression;
     
-    
-    while (action != "q") {
- 
-        do {
-    cout << "input: ";
+    while (action != "q")
+    {
+    do {
+        cout << "input: ";
         cin >> input;
         } while (input == "");
     
-        if (input == "q") {
+        if (input == "q")
+        {
             break;
         }
         
-        if (action == "s") {
+        if (action == "s")
+        {
             expressions.clear();
         }
         
         bool foundSemicolon = false;
-    string temp = "";
-        for (int i = 0; i < input.length();i++) {
-            if (input[i] != ';') {
+        string temp = "";
+        for (int i = 0; i < input.length();i++)
+        {
+            if (input[i] != ';')
+            {
                 temp += input[i];
             }
             else
             {
                 foundSemicolon = true;
-                if (temp.size() == 0) {
+                if (temp.size() == 0)
+                {
                     foundSemicolon = false;
                     break;
                 }
@@ -60,30 +63,30 @@ int main(int argc, const char * argv[]) {
                 temp = "";
             }
             
-            
-            if (input[input.length()-1] != ';') {
-                
+            if (input[input.length()-1] != ';')
+            {
                 foundSemicolon = false;
                 break;
             }
-            
         }
         
         action = "";
 
-        for (int i = 0; i < expressions.size(); i++) {
+        for (int i = 0; i < expressions.size(); i++)
+        {
             if (!expressions[i].isValid()) {
                 action = "s";
             }
-            if (expressions[0].get_type() == assignment) {
+            if (expressions[0].get_type() == assignment)
+            {
                 action = "s";
             }
         }
         
-        
-        
-        while (action != "q" && action != "c" && action != "s") {
-            if (!foundSemicolon) {
+        while (action != "q" && action != "c" && action != "s")
+        {
+            if (!foundSemicolon)
+            {
                 cout << "semicolon error" << endl;
                 break;
             }
@@ -91,24 +94,20 @@ int main(int argc, const char * argv[]) {
             cout << "action: ";
             cin >> action;
  
-        for (int i = 0; i < expressions.size(); i++) {
-           
-          //  cout << "valid: " << expressions[i].isValid() << endl;
+        for (int i = 0; i < expressions.size(); i++)
+        {
             
-            
-            for (int i = 0; i < expressions.size(); i++) {
+            for (int i = 0; i < expressions.size(); i++)
+            {
                 if (expressions[i].get_type() == assignment && expressions[i].isValid())
                 {
-                    //cout << expressions[i].get_original() << endl;
                     expressions[0].setVariable(expressions[i]);
                     
                 }
             }
             
-            
-            
-            
-            if (expressions[i].get_type() == arithmetic && expressions[i].isValid()) {
+            if (expressions[i].get_type() == arithmetic && expressions[i].isValid())
+            {
                 
                 if (action == "<")
                 {
@@ -128,46 +127,15 @@ int main(int argc, const char * argv[]) {
                 }
                 else
                 {
-                    if (action != "q" && action != "c" && action != "s") {
-                        
-                    
-                    cout << "invalid action" << endl;
+                    if (action != "q" && action != "c" && action != "s")
+                    {
+                        cout << "invalid action" << endl;
                     }
                 }
             }
-         
-
-            
             }
-  
         }
-        
-    
     }
-        
-        
-    
-    
-    
-    
-    /*
-    Expression test2;
-    string test = ")  a23b+12cs-0023*123 hghg ab123((0)";
-    string test3 = "    (a + 123 )*(ab - (3 + 4 )), ";
-    cout <<" //// TEST 1 ////" << endl;
-  
-    test2.set(test);
-    test2.display();
-    */
-    
-
-    
-    
-    
-    
-    
-    
-    
     
     return 0;
 }

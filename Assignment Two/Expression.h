@@ -24,6 +24,7 @@ public:
     exp_type get_type() const;
     void setVariable(Expression exp);
     vector<Token> get_tokenized() const;
+    
 private:
     string original;
     vector<Token> tokenized;

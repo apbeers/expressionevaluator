@@ -62,46 +62,6 @@ void Expression::set(const string& s)
         tokenized.push_back(temp);
     }
     
-
-    
-    /*
-    // Initialize all class variables and sets them. This is part of the TA solution. My version was very broken
-    original = s;
-    valid    = false;
-    type     = illegal;
-    tokenized.clear();
-    postfix.clear();
-    string delims = "(*)/+- %";
-    
-    int start = 0;
-    while (start < s.length())
-    {
-        
-        // ignores spaces at the beginning
-        while (s[start] == ' ')
-            start++;
-        
-        // Locate the end of the token
-        int end = start;
-        while (end < s.length() && !delimCheck(s[end], delims))
-            end++;
-        
-        // If the token is a single special character
-        if (start == end)
-            end++;
-        
-        // Create a token from this piece of the string
-        string piece = s.substr(start, end - start);
- 
-        Token tempToken(piece);
-        tokenized.push_back(tempToken);
-        
-        // Get ready for the next iteration
-        start = end;
-    }
-    
-    
-    */
     // this nest part checks if the function is valied and sets it's type
     enum States {operand, func, done};
     // this sets it the expression conatins an equal sign
@@ -111,11 +71,13 @@ void Expression::set(const string& s)
     valid = true;
     
     // loops through the expression and looks for errors
-    for (int i = 0; i < tokenized.size() && state != done; i++) {
+    for (int i = 0; i < tokenized.size() && state != done; i++)
+    {
         switch (state) {
                 // checks if the token is an operand or open brace. if it is a close brace the expression is invalid
             case operand:
-                if (tokenized[i].get_type() == openbrace) {
+                if (tokenized[i].get_type() == openbrace)
+                {
                     pcount++;
                 }
                 else if (tokenized[i].get_type() == integer || tokenized[i].get_type() == letter)
@@ -130,7 +92,8 @@ void Expression::set(const string& s)
                 break;
                 // this tests the function and checks if it is valid
             case func:
-                if (tokenized[i].get_type() == closebrace) {
+                if (tokenized[i].get_type() == closebrace)
+                {
                     pcount--;
                     
                     if (pcount < 0) {
@@ -159,27 +122,8 @@ void Expression::set(const string& s)
                // cout << "break" << endl;
                 break;
         }
-        
+    }
 
-    }
-    
-    
-    
-    int a =9;
-    switch (a) {
-        case 7:
-            //do this
-            break;
-            
-        case 9:
-            //do this
-            
-        default:
-            break;
-    }
-    
-    
-    
     // if the parenthesis aren't balanced it is invalid
     if (pcount != 0)
     {
@@ -192,7 +136,8 @@ void Expression::set(const string& s)
     }
     // it it is valid and is an assignment, it sets it as such
     if (valid) {
-        if (eqtrue && tokenized[0].get_type() == letter && tokenized[2].get_type() == integer && tokenized.size() == 3) {
+        if (eqtrue && tokenized[0].get_type() == letter && tokenized[2].get_type() == integer && tokenized.size() == 3)
+        {
             type = assignment;
             
         }
@@ -269,7 +214,8 @@ string Expression::toPostFix()
     // the string that holds the output.
     string output = "";
     
-    for (int i = 0; i < tokenized.size(); i++) {
+    for (int i = 0; i < tokenized.size(); i++)
+    {
         
         // if the token is a letter or number, it is put to the ootput and loaded into the postfix vectore
         if (tokenized[i].get_type() != op && tokenized[i].get_type() != openbrace && tokenized[i].get_type() != closebrace)
@@ -344,38 +290,36 @@ string Expression::toPreFix()
     
     
     // loops throught the postfix vector, when it finds an operator it pops two items from the stack and puts the operator on the front. then it stores this entire string back to the stack
-    for (int i = 0; i < postfix.size(); i++) {
+    for (int i = 0; i < postfix.size(); i++)
+    {
    
-    
-    if (postfix[i].get_type() == integer || postfix[i].get_type() == letter) {
-        Stack.push(postfix[i].get_token());
-    }
-    else if (postfix[i].get_type() == op){
-        temp2 = Stack.top();
-        Stack.pop();
-        temp1 = Stack.top();
-        Stack.pop();
-        output += postfix[i].get_token() +" "+temp1+" "+temp2;
-        Stack.push(output);
-        output = "";
-    }
-    
+        
+        if (postfix[i].get_type() == integer || postfix[i].get_type() == letter)
+        {
+            Stack.push(postfix[i].get_token());
+        }
+        else if (postfix[i].get_type() == op)
+        {
+            temp2 = Stack.top();
+            Stack.pop();
+            temp1 = Stack.top();
+            Stack.pop();
+            output += postfix[i].get_token() +" "+temp1+" "+temp2;
+            Stack.push(output);
+            output = "";
+        }
     }
     
     // at the end, the last item on the stack is the answer we want
-    
     string result = Stack.top();
     Stack.pop();
     
     return result;
-    
 }
-
 
 // uses the same logic as the evaluate function. It also uses the postfix version of the expression. It will loop through, when it finds an operator it pops two times from the stack, appends an open brace to the beginning, puts the items and operator inside after reversing the operands, then puts a close brace on and pushed the entire string back to the stack. at the end of the function the top of the stack contains the answer we want
 string Expression::toParenthesized()
 {
-    
     stack<string> Stack;
     string num1 = "";
     string num2 = "";
@@ -383,16 +327,15 @@ string Expression::toParenthesized()
     
     toPostFix();
     
-    for (int i = 0; i < postfix.size(); i++) {
+    for (int i = 0; i < postfix.size(); i++)
+    {
         if (postfix[i].get_type() == integer || postfix[i].get_type() == letter)
         {
             Stack.push(postfix[i].get_token());
-            
         }
         
-        else if (postfix[i].get_type() == op) {
-        
-            
+        else if (postfix[i].get_type() == op)
+        {
             // num2 is popped first becuase it will haave to go second in the parenthesize notation
             num2 = Stack.top();
             Stack.pop();
@@ -403,15 +346,9 @@ string Expression::toParenthesized()
             temp += "("+num1+postfix[i].get_token()+num2+")";
             Stack.push(temp);
             temp = "";
-
         }
     }
-
-    
     return Stack.top();
-    
-    
-    
 }
 
 // this also uses the postix expression. It will loop through until it finds an operator. when it does, it pops two items from the stack, performs the operation, and pushes the result back onto the stack. at the end, the stack only contains the result
@@ -434,10 +371,6 @@ int Expression::evaluate()
         // if it is a letter, it replaced it with the value from the variable array
         else if (postfix[i].get_type() == letter)
         {
-        //    char * cstr = new char[1];
-      //      strcpy(cstr, postfix[i].get_token().c_str());
-            
-            
             string a = postfix[i].get_token();
             Stack.push(to_string(variables[a[0]-'a']));
         }
@@ -453,7 +386,8 @@ int Expression::evaluate()
             {
                 result = num1 + num2;
             }
-            else if (postfix[i].get_token() == "-") {
+            else if (postfix[i].get_token() == "-")
+            {
                 result = num1 - num2;
             }
             else if (postfix[i].get_token() == "*")
@@ -471,12 +405,8 @@ int Expression::evaluate()
             Stack.push(to_string(result));
         }
     }
+    // at the end, the top of the stack is the string i want
     return stoi(Stack.top());
 }
-
-
-
-
-
 
 

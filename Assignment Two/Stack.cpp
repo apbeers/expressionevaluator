@@ -8,14 +8,16 @@
 
 #include "Stack.h"
 
-Stack::Stack() {
+Stack::Stack()
+{
     topIndex = -1;
     numElements = 0;
     buffer = new int[100];
 }
 
 
-Stack::~Stack() {
+Stack::~Stack()
+{
     topIndex = -1;
     numElements = 0;
 }

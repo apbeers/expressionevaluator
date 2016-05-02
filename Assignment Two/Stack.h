@@ -1,9 +1,4 @@
-/*
- * File:   Stack.h
- * Author: Jon C. Hammer
- *
- * Created on April 1, 2016, 11:24 AM
- */
+
 
 #ifndef STACK_H
 #define STACK_H
