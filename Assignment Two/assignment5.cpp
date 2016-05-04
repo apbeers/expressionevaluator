@@ -31,12 +31,12 @@ int main(int argc, const char * argv[])
         cin >> input;
         } while (input == "");
     
-        if (input == "q")
+        if (input == "q" || input == "Q")
         {
             break;
         }
         
-        if (action == "s")
+        if (action == "s" || action == "S")
         {
             expressions.clear();
         }
@@ -74,7 +74,8 @@ int main(int argc, const char * argv[])
 
         for (int i = 0; i < expressions.size(); i++)
         {
-            if (!expressions[i].isValid()) {
+            if (!expressions[i].isValid())
+            {
                 action = "s";
             }
             if (expressions[0].get_type() == assignment)
@@ -82,8 +83,8 @@ int main(int argc, const char * argv[])
                 action = "s";
             }
         }
-        
-        while (action != "q" && action != "c" && action != "s")
+    
+        while (action != "q" && action != "c" && action != "s" && action != "Q" && action != "C" && action != "S")
         {
             if (!foundSemicolon)
             {
@@ -127,7 +128,7 @@ int main(int argc, const char * argv[])
                 }
                 else
                 {
-                    if (action != "q" && action != "c" && action != "s")
+                    if (action != "q" && action != "c" && action != "s" && action != "Q" && action != "C" && action != "S")
                     {
                         cout << "invalid action" << endl;
                     }

@@ -32,6 +32,11 @@ bool delimCheck(char s, string delims) // this method is used as part of the tok
 
 void Expression::set(const string& s)
 {
+    for (int i = 0; i <  26 ; i++) {
+        variableSet[i] = 0;
+    }
+    
+    
     tokenized.clear();
     original = s; // sets the original variable in the class for this expression
     string delims = "()+-=/* %"; // string of delimiters
@@ -180,6 +185,9 @@ exp_type Expression::get_type() const
 // hashes the value of the variables into a slot in the array based on the letter
 void Expression::setVariable(Expression exp)
 {
+    
+    int slot = tolower(exp.original[0]) - 'a';
+      variableSet[slot] = 1;
       variables[tolower(exp.original[0]) - 'a'] = stoi(exp.tokenized[2].get_token());
 }
 
@@ -352,7 +360,7 @@ string Expression::toParenthesized()
 }
 
 // this also uses the postix expression. It will loop through until it finds an operator. when it does, it pops two items from the stack, performs the operation, and pushes the result back onto the stack. at the end, the stack only contains the result
-int Expression::evaluate()
+string Expression::evaluate()
 {
     stack<string> Stack;
     int num1 = 0;
@@ -372,7 +380,14 @@ int Expression::evaluate()
         else if (postfix[i].get_type() == letter)
         {
             string a = postfix[i].get_token();
-            Stack.push(to_string(variables[a[0]-'a']));
+            if (variableSet[a[0]-'a'] == 1) {
+                Stack.push(to_string(variables[a[0]-'a']));
+            }
+            else
+            {
+                return "variable not set";
+            }
+            
         }
         
         if (postfix[i].get_type() == op)
@@ -406,7 +421,8 @@ int Expression::evaluate()
         }
     }
     // at the end, the top of the stack is the string i want
-    return stoi(Stack.top());
+    int a = stoi(Stack.top());
+    return to_string(a);
 }
 
 

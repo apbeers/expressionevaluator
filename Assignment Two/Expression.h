@@ -19,7 +19,7 @@ public:
     string toPostFix();
     string toPreFix();
     string toParenthesized();
-    int evaluate();
+    string evaluate();
     string get_original() const;
     exp_type get_type() const;
     void setVariable(Expression exp);
@@ -31,6 +31,7 @@ private:
     vector<Token> postfix;
     bool valid;
     int variables[26];
+    int variableSet[26];
     exp_type type;
     stack<int> intStack;
     stack<string> stringStack;
