@@ -369,7 +369,7 @@ string Expression::evaluate()
             Stack.push(postfix[i].get_token());
             
         }
-        // if it is a letter, it replaced it with the value from the variable array
+        // if it is a letter, it replaced it with the value from the variable array. this uses hashing
         else if (postfix[i].get_type() == letter)
         {
             string a = postfix[i].get_token();
@@ -378,7 +378,7 @@ string Expression::evaluate()
             }
             else
             {
-                return "variable not set";
+                return "variable(s) not set";
             }
         }
 
