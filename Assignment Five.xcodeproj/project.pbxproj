@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		49AF9D981CCE99F100EA7BBB /* Stack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49AF9D961CCE99F100EA7BBB /* Stack.cpp */; };
 		49CA5F461C7BD42C00FACCD2 /* assignment5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49CA5F451C7BD42C00FACCD2 /* assignment5.cpp */; };
 		49CA5F4E1C7BD44600FACCD2 /* Expression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49CA5F4C1C7BD44600FACCD2 /* Expression.cpp */; };
 		49CA5F511C7BD4A600FACCD2 /* Token.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49CA5F4F1C7BD4A600FACCD2 /* Token.cpp */; };
@@ -26,8 +25,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		49AF9D961CCE99F100EA7BBB /* Stack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stack.cpp; sourceTree = "<group>"; };
-		49AF9D971CCE99F100EA7BBB /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
 		49CA5F421C7BD42C00FACCD2 /* Assignment Five */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment Five"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49CA5F451C7BD42C00FACCD2 /* assignment5.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = assignment5.cpp; sourceTree = "<group>"; };
 		49CA5F4C1C7BD44600FACCD2 /* Expression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Expression.cpp; sourceTree = "<group>"; };
@@ -67,8 +64,6 @@
 			isa = PBXGroup;
 			children = (
 				49CA5F451C7BD42C00FACCD2 /* assignment5.cpp */,
-				49AF9D961CCE99F100EA7BBB /* Stack.cpp */,
-				49AF9D971CCE99F100EA7BBB /* Stack.h */,
 				49CA5F4F1C7BD4A600FACCD2 /* Token.cpp */,
 				49CA5F501C7BD4A600FACCD2 /* Token.h */,
 				49CA5F4C1C7BD44600FACCD2 /* Expression.cpp */,
@@ -133,7 +128,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49AF9D981CCE99F100EA7BBB /* Stack.cpp in Sources */,
 				49CA5F511C7BD4A600FACCD2 /* Token.cpp in Sources */,
 				49CA5F461C7BD42C00FACCD2 /* assignment5.cpp in Sources */,
 				49CA5F4E1C7BD44600FACCD2 /* Expression.cpp in Sources */,

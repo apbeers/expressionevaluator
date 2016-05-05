@@ -32,6 +32,7 @@ bool delimCheck(char s, string delims) // this method is used as part of the tok
 
 void Expression::set(const string& s)
 {
+    // initialized the key array to all zeroes. a slot in this array is set to 1 when a variable is written to the variables array
     for (int i = 0; i <  26 ; i++) {
         variableSet[i] = 0;
     }
@@ -141,30 +142,22 @@ void Expression::set(const string& s)
     }
     // it it is valid and is an assignment, it sets it as such
     if (valid) {
-        if (eqtrue && tokenized[0].get_type() == letter && tokenized[2].get_type() == integer && tokenized.size() == 3)
+        if (eqtrue)
         {
-            type = assignment;
-            
+            if (tokenized[0].get_type() == letter && tokenized[2].get_type() == integer && tokenized.size() == 3 && tokenized[1].get_type() == eq)
+            {
+                type = assignment;
+            }
+            else
+            {
+                valid = false;
+            }
         }
         else
         {
-            //valid = false;
             type = arithmetic;
         }
     }
-    else
-    {
-        type = arithmetic;
-    }
-    
-    if (!valid)
-    {
-        cout << original << " is invalid" << endl;
-    }
-    
-    
-    
-    
 }
 
 string Expression::get_original() const
@@ -387,9 +380,8 @@ string Expression::evaluate()
             {
                 return "variable not set";
             }
-            
         }
-        
+
         if (postfix[i].get_type() == op)
         {
             num2 = stoi(Stack.top());

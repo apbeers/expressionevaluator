@@ -68,7 +68,7 @@ void Token::set(const string& s)
             // thi set of if statemnets checks if it is an integer that starts with zero
             if (s.at(0) == '0')
             {
-                if (s.at(i)!= 0 )
+                if (s.at(i)!= 0 && s.length() > 1)
                 {
                     startswithzero = true;
                 }

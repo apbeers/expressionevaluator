@@ -11,7 +11,7 @@
 #include <string>
 #include "Token.h"
 #include "Expression.h"
-#include "Stack.h"
+
 
 using namespace std;
 
@@ -24,7 +24,9 @@ int main(int argc, const char * argv[])
     vector<Expression> expressions;
     Expression expression;
     
-    while (action != "q")
+    
+    // the whole thing is inside of this while loop
+    while (action != "q" && action != "Q")
     {
     do {
         cout << "input: ";
@@ -41,10 +43,18 @@ int main(int argc, const char * argv[])
             expressions.clear();
         }
         
+        // this part checks for semicolons and creates the expressions from`1871 the input
         bool foundSemicolon = false;
         string temp = "";
         for (int i = 0; i < input.length();i++)
         {
+            
+            if (input[input.length()-1] != ';')
+            {
+                foundSemicolon = false;
+                break;
+            }
+            
             if (input[i] != ';')
             {
                 temp += input[i];
@@ -62,28 +72,29 @@ int main(int argc, const char * argv[])
                 expressions.push_back(expression);
                 temp = "";
             }
-            
-            if (input[input.length()-1] != ';')
-            {
-                foundSemicolon = false;
-                break;
-            }
         }
+
         
         action = "";
 
+        // these two cases check that all of the expressions are valid and that the first expression is not an assignment
         for (int i = 0; i < expressions.size(); i++)
         {
             if (!expressions[i].isValid())
             {
-                action = "s";
-            }
-            if (expressions[0].get_type() == assignment)
-            {
+                cout << expressions[i].get_original() << " is invalid" << endl;
                 action = "s";
             }
         }
-    
+        
+        if (expressions.size() != 0) {
+            if (expressions[0].get_type() == assignment)
+            {
+                action = "s";
+                cout << "the first expression must not be assignment" << endl;
+            }
+        }
+        
         while (action != "q" && action != "c" && action != "s" && action != "Q" && action != "C" && action != "S")
         {
             if (!foundSemicolon)
@@ -95,6 +106,8 @@ int main(int argc, const char * argv[])
             cout << "action: ";
             cin >> action;
  
+            
+            // loops through the expressions vector and sets the varaible values in the first expression
         for (int i = 0; i < expressions.size(); i++)
         {
             
@@ -107,6 +120,7 @@ int main(int argc, const char * argv[])
                 }
             }
             
+            // performs the specified action
             if (expressions[i].get_type() == arithmetic && expressions[i].isValid())
             {
                 
@@ -128,6 +142,7 @@ int main(int argc, const char * argv[])
                 }
                 else
                 {
+                    // check for invalid actions
                     if (action != "q" && action != "c" && action != "s" && action != "Q" && action != "C" && action != "S")
                     {
                         cout << "invalid action" << endl;
