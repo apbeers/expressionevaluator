@@ -1,8 +1,8 @@
 # expressionevaluator
 
-This was teh final project in my Programming Foundations 2 class.
+This was the final project in my Programming Foundations 2 class.
 
-to use, enter a string of expressions separated by semicolons
+to use it, compile all of the .cpp and .h files and run.  enter a string of expressions separated by semicolons
 ex) 2+5;9*9/6;
 
 then for actions, the options are
